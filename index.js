@@ -1,11 +1,7 @@
-const mdLinks = require("md-links");
-const fs = require("fs")
+var fs = require("fs")
 
 
 module.exports = () => {
-  mdLinks(path, options) = {
-    
-  }
 
 
 };

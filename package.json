@@ -1,8 +1,19 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "@paolahuyo/md-links",
+  "version": "1.0",
+  "description": "librería que lee archivos .md y valida el status http de cada link",
+  "main": "index.js",
   "engines": {
     "node": ">=14.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paolahuyo/BOG004-md-links/.git"
+  },
+  "author": "Angela Paola Huyo",
+  "license": "ISC",
+  "bin": {
+    "md-links": "cli.js"
   },
   "dependencies": {
     "express": "^4.17.3",
