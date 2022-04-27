@@ -3,5 +3,10 @@
   "version": "0.1.0",
   "engines": {
     "node": ">=14.x"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3",
+    "nodemon": "^2.0.15"
   }
 }
