@@ -96,37 +96,6 @@ const getMdFiles = (path) => {
   }
 };
 
-// const getMdFiles = (path) => {
-//   var mdFiles = [];
-//   if (pathExists(path)) {
-//       var routeAbsolute = pathCheck(path);
-//       console.log(routeAbsolute);
-//       var isFile = checkExt(routeAbsolute);
-//       console.log(isFile);
-//       if (isFile === ".md") { //When it's a file
-//         if (checkMarkdown) { //When it's a .md
-//           mdFiles = mdFiles.concat(routeAbsolute);
-//           return mdFiles
-//         } else {
-//           return 'This route does not have an md file and this program only checks md files'
-//           }
-//       } else { //When it's a directory
-//         var dir = checkDir(routeAbsolute);
-//         if (dir) {
-//           var listFilesDir = readDir(routeAbsolute);
-//           listFilesDir.forEach((dirFile) => {
-//               var joinedPath = joinPath(routeAbsolute, dirFile);
-//               var recheck = getMdFiles(joinedPath);
-//               mdFiles = mdFiles.concat(recheck);
-//           });
-//           return mdFiles.length !== 0 ? mdFiles : 'The directory does not have files'
-//         } 
-//       }    
-//   } else {
-//       return 'The input route does not exists'
-//   }
-// };
-
 console.log(getMdFiles(inputPath));
 
 module.exports = {
