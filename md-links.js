@@ -1,18 +1,7 @@
-var fs = require('fs');
-var path  = require('path');
+const path  = require('path');
+const fs = require('fs');
 
-var options = {
-  validate: false,
-  stats: false
-}
-
-var listLinks = [];
-var linksStatus = [];
-var total = 0;
-var unique = 0;
-var broken = 0;
-
-var path = process.argv[2];
+var inputPath = process.argv[2];
 
 var options = {
     validate: false,
@@ -27,33 +16,31 @@ if (process.argv.includes('--stats')){
     options.stats = true;
 };
 
-console.log(path);
 console.log(options);
 
-//My created methods
-
+//-------My created methods----------
 //Checks if the path exists
-var pathExists = (route) => fs.existSync(route);
-console.log(pathExists(path));
+const pathExists = (route) => fs.existsSync(route);
+console.log(pathExists(inputPath));
 
-//Checks if it's an absolute path, it it's returns the e, if not it converts a relative path in and absolute path
+//Checks if it's an absolute path, if it's returns the route, if not it converts a relative path in and absolute path
 var pathCheck = (route) => path.isAbsolute(route) ? route : path.resolve(route);
-console.log(pathCheck(path));
+console.log(pathCheck(inputPath));
 
 //Checks if the route is a file or a directory
 var checkExt = (route) => {
   if (path.parse(route).ext !== '') {
       var fileExt = path.parse(route).ext;
-      return fileExt
+      return fileExt  //it's a file 
   } else {
-      return false
+      return false  // it's a directory
     }
 }
-console.log(checkExt(path));
+console.log(checkExt(inputPath));
 
 //Returns the list of files in a directory
 var checkDir = (route) => fs.readdirSync(route, 'utf-8');
-console.log(checkDir(path));
+console.log(checkDir(inputPath));
 
 //Checks if a file is a markdown (.md) file
 var checkMarkdown = (route) => {
@@ -61,20 +48,20 @@ var checkMarkdown = (route) => {
     var isMarkdown= "true";
     return isMarkdown
   } else {
-    return false;
+    return false; //it's not an .md file
     }
 }
-console.log(checkMarkdown(path));
+console.log(checkMarkdown(inputPath));
 
-//Reads a file
+//Reads a file---Not for directories
 var readFile = (route) => fs.readFileSync(route, 'utf-8');
-console.log(readFile(path));
+console.log(readFile(inputPath)); 
 
-//Joins different pieces of a route
+//Joins different pieces of a route---When it's a directory it has to turn the list of files into a list of absolute routes to read each file
 const joinPath = (dir, file) => path.join(dir, file);
-console.log(joinPath(path,extra));
+console.log(joinPath(inputPath,extra));
 
-module.exports = () => {
+module.exports = {
   pathExists, 
   pathCheck,
   checkExt,

@@ -82,3 +82,12 @@
 
 // var output = util.format("Total: %s \nUnique: %d", total, unique);
 // console.log(output);
+
+
+// Calling the readFileSync() method
+// to read 'input.txt' file
+// const data = fs.readFileSync('./input.txt',
+//             {encoding:'utf8', flag:'r'});
+ 
+// // Display the file data
+// console.log(data);
