@@ -87,12 +87,9 @@ module.exports = {
   readDir,
   checkMarkdown,
   readFile,
-  joinPath
+  joinPath, 
+  getMdFiles
 };
-
-
-
-
 
 //Function to get the array with .md files to analize and the errors in the route
 

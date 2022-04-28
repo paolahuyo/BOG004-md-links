@@ -1,4 +1,7 @@
-var fs = require("fs")
+var fs = require("fs");
+const path  = require('path');
+
+mdlinks(path, options)
 
 
 module.exports = () => {
