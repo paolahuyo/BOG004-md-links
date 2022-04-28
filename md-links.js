@@ -1,5 +1,6 @@
 const path  = require('path');
 const fs = require('fs');
+const { route } = require('express/lib/application');
 
 var inputPath = process.argv[2];
 
@@ -78,6 +79,40 @@ const getMdFiles = (path) => {
 };
 
 console.log(getMdFiles(inputPath));
+
+var regexTextUrl = /\[(.+?)\]\((https?.+?)\)/g;
+var regexUrl = /^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
+var regexpText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚüa-zA-Z0-9\-_$]+)\]/g;
+
+//Function to read the .mdfiles and returning the links and the properties of the links
+
+const getLinksProperties = (path) => {
+  var properties = [];
+  var files = getMdFiles(path);
+  files.forEach((fileInput) => {
+    var insideFile = readFile(fileInput);
+    var linksInMd = insideFile.match(regexTextUrl);
+    console.log(linksInMd);
+    if (linksInMd) {
+      linksInMd.forEach((link) =>{
+        const href = link.match(regexUrl).join();
+        console.log(href);
+        const text = link.match(regexText)//.join().slice(1, -1);
+        properties.push({
+          href,
+          text,
+          file: fileInput
+        })
+      });
+    return properties
+    } else {
+      console.log("no hay links");
+    }
+  });
+}
+
+console.log(getLinksProperties(inputPath))
+
 
 module.exports = {
   pathExists, 
