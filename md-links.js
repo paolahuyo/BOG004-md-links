@@ -81,8 +81,9 @@ const getMdFiles = (path) => {
 console.log(getMdFiles(inputPath));
 
 var regexTextUrl = /\[(.+?)\]\((https?.+?)\)/g;
-var regexUrl = /^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
-var regexpText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚüa-zA-Z0-9\-_$]+)\]/g;
+var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
+///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
+var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
 
 //Function to read the .mdfiles and returning the links and the properties of the links
 
@@ -91,13 +92,12 @@ const getLinksProperties = (path) => {
   var files = getMdFiles(path);
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
-    var linksInMd = insideFile.match(regexTextUrl);
-    console.log(linksInMd);
-    if (linksInMd) {
-      linksInMd.forEach((link) =>{
+    var lineLink = insideFile.match(regexTextUrl);
+    console.log(lineLink);
+    if (lineLink) {
+      lineLink.forEach((link) =>{
         const href = link.match(regexUrl).join();
-        console.log(href);
-        const text = link.match(regexText)//.join().slice(1, -1);
+        const text = link.match(regexText).join().slice(1, -1);
         properties.push({
           href,
           text,
