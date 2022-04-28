@@ -42,8 +42,8 @@ var readDir = (route) => fs.readdirSync(route, 'utf-8');
 
 //Checks if a file is a markdown (.md) file
 var checkMarkdown = (route) => {
-  if (path.extname == ".md") {
-    var isMarkdown="true";
+  if (path.extname(route) == ".md") {
+    var isMarkdown = 'true';
     return isMarkdown
   } else {
     return false; //it's not an .md file
@@ -60,38 +60,72 @@ var readFile = (route) => fs.readFileSync(route, 'utf-8');
 //Joins different pieces of a route---When it's a directory it has to turn the list of files into a list of absolute routes to read each file
 const joinPath = (dir, file) => path.join(dir, file);
 
-//Function to get the array with .md files to analize
+//Function to get the array with .md files to analize and the errors in the route
 
 const getMdFiles = (path) => {
   var mdFiles = [];
   if (pathExists(path)) {
       var routeAbsolute = pathCheck(path);
-      console.log(routeAbsolute);
-      var isFile = checkExt(routeAbsolute);
-      console.log(isFile);
-      if (isFile) { //When it's a file
-        if (checkMarkdown) { //When it's a .md
-          mdFiles = mdFiles.concat(routeAbsolute);
-          return mdFiles
+      console.log("ruta absoluta",routeAbsolute);
+      var dir = checkDir(routeAbsolute);
+      console.log("es directorio?",dir);
+      var ext = checkExt(routeAbsolute);
+      if (dir) { //When it's a directory
+        var listFilesDir = readDir(routeAbsolute);
+        listFilesDir.forEach((dirFile) => {
+            var joinedPath = joinPath(routeAbsolute, dirFile);
+            var recheck = getMdFiles(joinedPath);
+            mdFiles = mdFiles.concat(recheck);
+        });
+        return mdFiles.length !== 0 ?mdFiles : 'The directory does not have files'
+      } if(ext) { //When it's a file
+        console.log(checkMarkdown(routeAbsolute));
+         if (checkMarkdown(routeAbsolute) == "true") { //When it's a .md
+            mdFiles = mdFiles.concat(routeAbsolute);
+            return mdFiles
+          } else {
+            return 'This is not an .md file'
+            // return 'This route does not have an md file and this program only checks md files'
+            }
         } else {
-          return 'This route does not have an md file and this program only checks md files'
-          }
-      } else { //When it's a directory
-        var dir = checkDir(routeAbsolute)
-        if (dir) {
-          var listFilesDir = readDir(routeAbsolute);
-          listFilesDir.forEach((dirFile) => {
-              var joinedPath = joinPath(routeAbsolute, dirFile);
-              var recheck = getMdFiles(joinedPath);
-              mdFiles = mdFiles.concat(recheck);
-          });
-          return mdFiles.length !== 0 ? mdFiles : 'The directory does not have files'
+          return 'this is not a file or directory check and try again'
         } 
-      }    
   } else {
-      return 'The input route does not exists'
+      //return mdFiles
+      return 'The input route does not exists or the file does not have any extension'
   }
 };
+
+// const getMdFiles = (path) => {
+//   var mdFiles = [];
+//   if (pathExists(path)) {
+//       var routeAbsolute = pathCheck(path);
+//       console.log(routeAbsolute);
+//       var isFile = checkExt(routeAbsolute);
+//       console.log(isFile);
+//       if (isFile === ".md") { //When it's a file
+//         if (checkMarkdown) { //When it's a .md
+//           mdFiles = mdFiles.concat(routeAbsolute);
+//           return mdFiles
+//         } else {
+//           return 'This route does not have an md file and this program only checks md files'
+//           }
+//       } else { //When it's a directory
+//         var dir = checkDir(routeAbsolute);
+//         if (dir) {
+//           var listFilesDir = readDir(routeAbsolute);
+//           listFilesDir.forEach((dirFile) => {
+//               var joinedPath = joinPath(routeAbsolute, dirFile);
+//               var recheck = getMdFiles(joinedPath);
+//               mdFiles = mdFiles.concat(recheck);
+//           });
+//           return mdFiles.length !== 0 ? mdFiles : 'The directory does not have files'
+//         } 
+//       }    
+//   } else {
+//       return 'The input route does not exists'
+//   }
+// };
 
 console.log(getMdFiles(inputPath));
 
