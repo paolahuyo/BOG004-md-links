@@ -1,5 +1,6 @@
 const path  = require('path');
 const fs = require('fs');
+const axios = require('axios');
 
 var inputPath = process.argv[2];
 
@@ -90,7 +91,7 @@ var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 const getLinksProperties = (path) => {
   var files = getMdFiles(path);
   console.log(files);
-  var properties = [];
+  var linksArray = [];
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
@@ -106,7 +107,7 @@ const getLinksProperties = (path) => {
         }
       //console.log("object", object);
       //console.log("properties", properties);
-      properties.push(object);
+      linksArray.push(object);
       }
     } else if (listLinks == 'null') { // there are not links
       var object = {
@@ -114,28 +115,56 @@ const getLinksProperties = (path) => {
         text: '',
         file: fileInput
         }
-        properties = object;
+        linksArray = object;
       }
   });
-  return properties
+  return linksArray
 }
-      // lineLink.forEach((link) =>{
-      //   const exec = regexTextUrl.exec(link);
-      //   console.log(exec);
-      //   //const href = link.match(regexUrl).join();
-      //   //const text = link.match(regexText).join().slice(1, -1);
-      //   exec.forEach((i) =>{
-      //       let object = {
-      //       href: exec[i[2]],
-      //       text: exec[i[1]],
-      //       file: fileInput
-      //       }
-      //       return listLinks = properties.push(object)
-      //     });
-      //   return listLinks
-      // });
 
 console.log(getLinksProperties(inputPath))
+
+const validateLinks = (linksArray) => {
+    return new Promise ((resolve) =>{
+        const promiseArray = [];
+        linksArray.forEach((link) => {
+            promiseArray,push(new Promise((resolve)=>{
+                axios.get(link.href).then(response => {
+                link.status = response.status;
+                link.ok = true;
+                resolve();
+                }).catch(error => {
+                    let status = 500; // unknown error
+                    if (error.response) {
+                        status = error.response.status;// the server says some error
+                    }
+                    if (error.request) {
+                        status = 503; // the server is not ready to handle the request
+                    }
+                    link.status = status;
+                    link.ok = false;
+                    resolve();
+                });
+            }));
+        });
+
+        //se resuelven todas las promesas al tiempo
+        Promise.all(promiseArray).then(() => {
+            resolve(linksArray);
+        })
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = {
