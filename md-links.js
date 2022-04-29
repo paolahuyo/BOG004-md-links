@@ -77,7 +77,7 @@ const getMdFiles = (path) => {
   }
 };
 
-///Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-filesconsole.log(getMdFiles(inputPath));
+//console.log(getMdFiles(inputPath));
 
 var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
 var regexTextUrl = /\[(.*)\]\((.*)\)/;
@@ -100,7 +100,7 @@ const getLinksProperties = (path) => {
         const exec = regexTextUrl.exec(listLinks[i]);
         //console.log("exec",exec);
         let object = {
-          href: exec[2],
+          url: exec[2],
           text: exec[1],
           file: fileInput
         }
@@ -108,9 +108,9 @@ const getLinksProperties = (path) => {
       //console.log("properties", properties);
       properties.push(object);
       }
-    } else { // there are not links
+    } else if (listLinks == 'null') { // there are not links
       var object = {
-        href: 'There are not links',
+        url: 'There are not links',
         text: '',
         file: fileInput
         }
