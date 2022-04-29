@@ -77,7 +77,7 @@ const getMdFiles = (path) => {
   }
 };
 
-//console.log(getMdFiles(inputPath));
+///Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-filesconsole.log(getMdFiles(inputPath));
 
 var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
 var regexTextUrl = /\[(.*)\]\((.*)\)/;
@@ -86,14 +86,15 @@ var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
 //var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
 var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 
-//Function to read the .mdfiles of a directory and returning the links and the properties of the links
+//Function to read the .mdfiles of an .md file only and returning the links and the properties of the links
 const getLinksProperties = (path) => {
   var files = getMdFiles(path);
+  console.log(files);
   var properties = [];
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
-    //console.log(listLinks);
+    console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -107,8 +108,7 @@ const getLinksProperties = (path) => {
       //console.log("properties", properties);
       properties.push(object);
       }
-    }  else { // there are not links
-      console.log("no hay links");
+    } else { // there are not links
       var object = {
         href: 'There are not links',
         text: '',
