@@ -2,7 +2,7 @@
   "name": "@paolahuyo/md-links",
   "version": "1.0",
   "description": "librería que lee archivos .md y valida el status http de cada link",
-  "main": "index.js",
+  "main": "md-links.js",
   "engines": {
     "node": ">=14.x"
   },

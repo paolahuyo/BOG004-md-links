@@ -100,7 +100,7 @@ const getLinksProperties = (path) => {
         const exec = regexTextUrl.exec(listLinks[i]);
         //console.log("exec",exec);
         let object = {
-          url: exec[2],
+          href: exec[2],
           text: exec[1],
           file: fileInput
         }
@@ -110,7 +110,7 @@ const getLinksProperties = (path) => {
       }
     } else if (listLinks == 'null') { // there are not links
       var object = {
-        url: 'There are not links',
+        href: 'There are not links',
         text: '',
         file: fileInput
         }
