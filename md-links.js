@@ -80,14 +80,13 @@ const getMdFiles = (path) => {
 //console.log(getMdFiles(inputPath));
 
 var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
+var regexTextUrl = /\[(.*)\]\((.*)\)/;
 var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
 ///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
 //var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
-
 var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
-var regexTextUrl = /\[(.*)\]\((.*)\)/;
 
-//Function to read the .mdfiles and returning the links and the properties of the links
+//Function to read the .mdfiles of a directory and returning the links and the properties of the links
 const getLinksProperties = (path) => {
   var files = getMdFiles(path);
   var properties = [];
@@ -105,10 +104,9 @@ const getLinksProperties = (path) => {
           file: fileInput
         }
       //console.log("object", object);
-      console.log("properties", properties);
+      //console.log("properties", properties);
       properties.push(object);
       }
-    return properties
     }  else { // there are not links
       console.log("no hay links");
       var object = {
@@ -116,10 +114,10 @@ const getLinksProperties = (path) => {
         text: '',
         file: fileInput
         }
-        console.log(object);
+        properties = object;
       }
-      return object
   });
+  return properties
 }
       // lineLink.forEach((link) =>{
       //   const exec = regexTextUrl.exec(link);
@@ -136,7 +134,6 @@ const getLinksProperties = (path) => {
       //     });
       //   return listLinks
       // });
-  
 
 console.log(getLinksProperties(inputPath))
 
