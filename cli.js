@@ -12,7 +12,7 @@ var inputOptions = () =>{
     return options
 }
 
-console.log(inputOptions());
+//console.log(inputOptions());
 
 module.exports = {
     inputOptions

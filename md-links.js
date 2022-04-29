@@ -1,6 +1,5 @@
 const path  = require('path');
 const fs = require('fs');
-const { route } = require('express/lib/application');
 
 var inputPath = process.argv[2];
 
@@ -78,38 +77,66 @@ const getMdFiles = (path) => {
   }
 };
 
-console.log(getMdFiles(inputPath));
+//console.log(getMdFiles(inputPath));
 
-var regexTextUrl = /\[(.+?)\]\((https?.+?)\)/g;
+var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
 var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
 ///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
-var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
+//var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
+
+var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
+var regexTextUrl = /\[(.*)\]\((.*)\)/;
 
 //Function to read the .mdfiles and returning the links and the properties of the links
-
 const getLinksProperties = (path) => {
-  var properties = [];
   var files = getMdFiles(path);
+  var properties = [];
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
-    var lineLink = insideFile.match(regexTextUrl);
-    console.log(lineLink);
-    if (lineLink) {
-      lineLink.forEach((link) =>{
-        const href = link.match(regexUrl).join();
-        const text = link.match(regexText).join().slice(1, -1);
-        properties.push({
-          href,
-          text,
+    var listLinks = insideFile.match(regexTextUrlGlobal);
+    //console.log(listLinks);
+    if (listLinks) {
+      for (let i = 0; i < listLinks.length; i++) {
+        const exec = regexTextUrl.exec(listLinks[i]);
+        //console.log("exec",exec);
+        let object = {
+          href: exec[2],
+          text: exec[1],
           file: fileInput
-        })
-      });
+        }
+      //console.log("object", object);
+      console.log("properties", properties);
+      properties.push(object);
+      }
     return properties
-    } else {
+    }  else { // there are not links
       console.log("no hay links");
-    }
+      var object = {
+        href: 'There are not links',
+        text: '',
+        file: fileInput
+        }
+        console.log(object);
+      }
+      return object
   });
 }
+      // lineLink.forEach((link) =>{
+      //   const exec = regexTextUrl.exec(link);
+      //   console.log(exec);
+      //   //const href = link.match(regexUrl).join();
+      //   //const text = link.match(regexText).join().slice(1, -1);
+      //   exec.forEach((i) =>{
+      //       let object = {
+      //       href: exec[i[2]],
+      //       text: exec[i[1]],
+      //       file: fileInput
+      //       }
+      //       return listLinks = properties.push(object)
+      //     });
+      //   return listLinks
+      // });
+  
 
 console.log(getLinksProperties(inputPath))
 
