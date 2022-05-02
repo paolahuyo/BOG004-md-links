@@ -1,6 +1,7 @@
 const path  = require('path');
 const fs = require('fs');
 const axios = require('axios');
+const { links } = require('express/lib/response');
 
 var inputPath = process.argv[2];
 
@@ -121,12 +122,12 @@ const getLinksProperties = (path) => {
   return linksArray
 }
 
-console.log(getLinksProperties(inputPath))
+console.log(getLinksProperties(inputPath));
 
-const validateLinks = (linksArray) => {
+const validateLinks = (links) => {
     return new Promise ((resolve) =>{
         const promiseArray = [];
-        linksArray.forEach((link) => {
+        links.forEach((link) => {
             promiseArray,push(new Promise((resolve)=>{
                 axios.get(link.href).then(response => {
                 link.status = response.status;
@@ -154,7 +155,7 @@ const validateLinks = (linksArray) => {
     });
 }
 
-
+//console.log(validateLinks(links))
 
 
 
