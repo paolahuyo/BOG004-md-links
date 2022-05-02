@@ -1,7 +1,7 @@
 const path  = require('path');
 const fs = require('fs');
 const axios = require('axios');
-const { links } = require('express/lib/response');
+const fetch = require('node-fetch');
 
 var inputPath = process.argv[2];
 
@@ -49,7 +49,6 @@ var readFile = (route) => fs.readFileSync(route, 'utf-8');
 const joinPath = (dir, file) => path.join(dir, file);
 
 //Function to get the array with .md files to analize without errors
-
 const getMdFiles = (path) => {
   var mdFiles = [];
   if (pathExists(path)) {
@@ -91,12 +90,12 @@ var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 //Function to read the .mdfiles and returning the links and the properties of the links
 const getLinksProperties = (path) => {
   var files = getMdFiles(path);
-  console.log(files);
+  //console.log(files);
   var linksArray = [];
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
-    console.log("listLinks", listLinks);
+    //console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -122,7 +121,37 @@ const getLinksProperties = (path) => {
   return linksArray
 }
 
-console.log(getLinksProperties(inputPath));
+//console.log(getLinksProperties(inputPath));
+
+const fetchStatus = (path) => {
+    const getStatus = getLinksProperties(path).map((element) => {
+        const requestFetch = fetch(element.href)
+            .then((response) => {
+                const statusFetch = {
+                    href: element.href,
+                    text: element.text,
+                    file: element.file,
+                    status: response.status,
+                    case: response.ok ? 'ok' : 'fail'
+                }
+                console.log("statusFetch",statusFetch)
+                return statusFetch
+            }).catch((error) => {
+                const statusFetch = {
+                    href: element.href,
+                    file: element.file,
+                    text: element.text,
+                    status: 400,
+                    case: 'fail',
+                }
+                return statusFetch
+            })
+        return requestFetch
+    })
+    return Promise.all(getStatus)
+}
+
+fetchStatus(inputPath);
 
 // const linksDone = getLinksProperties(inputPath);
 
@@ -159,17 +188,6 @@ console.log(getLinksProperties(inputPath));
 
 // console.log(validateLinks(linksDone));
 
-
-
-
-
-
-
-
-
-
-
-
 module.exports = {
   pathExists, 
   pathCheck,
@@ -180,7 +198,8 @@ module.exports = {
   readFile,
   joinPath, 
   getMdFiles,
-  getLinksProperties
+  getLinksProperties,
+  fetchStatus
 };
 
 //Function to get the array with .md files to analize and the errors in the route
