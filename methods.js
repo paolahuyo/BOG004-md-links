@@ -123,6 +123,7 @@ const getLinksProperties = (path) => {
 
 //console.log(getLinksProperties(inputPath));
 
+//Function to get the status and case of each of the links objects
 const fetchStatus = (path) => {
     const getStatus = getLinksProperties(path).map((element) => {
         const requestFetch = fetch(element.href)
@@ -153,13 +154,13 @@ const fetchStatus = (path) => {
 
 fetchStatus(inputPath);
 
-// const linksDone = getLinksProperties(inputPath);
+//const linksDone = getLinksProperties(inputPath);
 
 // const validateLinks = (links) => {
 //     return new Promise ((resolve) =>{
 //         const promiseArray = [];
 //         links.forEach((link) => {
-//             promiseArray,push(new Promise((resolve)=>{
+//             promiseArray.push(new Promise((resolve)=>{
 //                 axios.get(link.href).then(response => {
 //                 link.status = response.status;
 //                 link.ok = true;
@@ -186,7 +187,7 @@ fetchStatus(inputPath);
 //     });
 // }
 
-// console.log(validateLinks(linksDone));
+// console.log(validateLinks(getLinksProperties(inputPath)));
 
 module.exports = {
   pathExists, 
@@ -199,6 +200,7 @@ module.exports = {
   joinPath, 
   getMdFiles,
   getLinksProperties,
+  //validateLinks
   fetchStatus
 };
 
