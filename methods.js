@@ -2,6 +2,7 @@ const path  = require('path');
 const fs = require('fs');
 const axios = require('axios');
 const fetch = require('node-fetch');
+const { Console } = require('console');
 
 var inputPath = process.argv[2];
 
@@ -95,7 +96,7 @@ const getLinksProperties = (path) => {
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
-    console.log("listLinks", listLinks);
+    //console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -135,8 +136,8 @@ const fetchStatus = (path) => {
                     status: response.status,
                     case: response.ok ? 'ok' : 'fail'
                 }
-                console.log("response", response)
-                console.log("statusFetch",statusFetch)
+                //console.log("response", response)
+                //console.log("statusFetch",statusFetch)
                 return statusFetch
             }).catch((error) => {
                 const statusFetch = {
@@ -153,7 +154,11 @@ const fetchStatus = (path) => {
     return Promise.all(getStatus)
 }
 
-console.log(fetchStatus(inputPath));
+//console.log(fetchStatus(inputPath));
+
+// fetchStatus(inputPath).then( (arrayProp) => {
+//     console.log(arrayProp);
+// });
 
 //const linksDone = getLinksProperties(inputPath);
 

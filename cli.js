@@ -12,7 +12,7 @@ var inputOptions = () =>{
     return options
 }
 
-console.log(inputOptions());
+console.log("Objeto de opciones en cli", inputOptions());
 
 module.exports = {
     inputOptions
