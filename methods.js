@@ -95,7 +95,7 @@ const getLinksProperties = (path) => {
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
-    //console.log("listLinks", listLinks);
+    console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -135,6 +135,7 @@ const fetchStatus = (path) => {
                     status: response.status,
                     case: response.ok ? 'ok' : 'fail'
                 }
+                console.log("response", response)
                 console.log("statusFetch",statusFetch)
                 return statusFetch
             }).catch((error) => {
@@ -152,7 +153,7 @@ const fetchStatus = (path) => {
     return Promise.all(getStatus)
 }
 
-fetchStatus(inputPath);
+console.log(fetchStatus(inputPath));
 
 //const linksDone = getLinksProperties(inputPath);
 
@@ -200,7 +201,6 @@ module.exports = {
   joinPath, 
   getMdFiles,
   getLinksProperties,
-  //validateLinks
   fetchStatus
 };
 
