@@ -157,39 +157,6 @@ console.log(fetchStatus(inputPath));
 
 //const linksDone = getLinksProperties(inputPath);
 
-// const validateLinks = (links) => {
-//     return new Promise ((resolve) =>{
-//         const promiseArray = [];
-//         links.forEach((link) => {
-//             promiseArray.push(new Promise((resolve)=>{
-//                 axios.get(link.href).then(response => {
-//                 link.status = response.status;
-//                 link.ok = true;
-//                 resolve();
-//                 }).catch(error => {
-//                     let status = 500; // unknown error
-//                     if (error.response) {
-//                         status = error.response.status;// the server says some error
-//                     }
-//                     if (error.request) {
-//                         status = 503; // the server is not ready to handle the request
-//                     }
-//                     link.status = status;
-//                     link.ok = false;
-//                     resolve();
-//                 });
-//             }));
-//         });
-
-//         //se resuelven todas las promesas al tiempo
-//         Promise.all(promiseArray).then(() => {
-//             resolve(links);
-//         })
-//     });
-// }
-
-// console.log(validateLinks(getLinksProperties(inputPath)));
-
 module.exports = {
   pathExists, 
   pathCheck,
@@ -272,5 +239,38 @@ module.exports = {
 //   }
 // };
 
+//----------------------function with axios evaluating links-----------------------------
+// const validateLinks = (links) => {
+//     return new Promise ((resolve) =>{
+//         const promiseArray = [];
+//         links.forEach((link) => {
+//             promiseArray.push(new Promise((resolve)=>{
+//                 axios.get(link.href).then(response => {
+//                 link.status = response.status;
+//                 link.ok = true;
+//                 resolve();
+//                 }).catch(error => {
+//                     let status = 500; // unknown error
+//                     if (error.response) {
+//                         status = error.response.status;// the server says some error
+//                     }
+//                     if (error.request) {
+//                         status = 503; // the server is not ready to handle the request
+//                     }
+//                     link.status = status;
+//                     link.ok = false;
+//                     resolve();
+//                 });
+//             }));
+//         });
+
+//         //se resuelven todas las promesas al tiempo
+//         Promise.all(promiseArray).then(() => {
+//             resolve(links);
+//         })
+//     });
+// }
+
+// console.log(validateLinks(getLinksProperties(inputPath)));
 
 
