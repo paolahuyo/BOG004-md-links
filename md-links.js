@@ -52,6 +52,7 @@ const evaluateCli = (path, options = {}) => {
               res.forEach((linkObject) => {
                   if (linkObject.status >= 400) {
                       brokenlinks.push(linkObject.status);
+                      console.log(brokenlinks);
                   }
                   uniqueLinks[linkObject.href] = uniqueLinks[linkObject.href]
                   ? uniqueLinks[linkObject.href] + 1 : 1;
@@ -62,7 +63,7 @@ const evaluateCli = (path, options = {}) => {
                   console.log("Broken:", brokenlinks.lenght);
               } else { //When the option has --validate but hasn't --stats
                   res.forEach((linkObject) => {
-                      const dataStatus = `${(inputPath)} ${(linkObject.href)} ${(linkObject.status,linkObject.case)} ${(linkObject.text)}`
+                      const dataStatus = `${(inputPath)} ${(linkObject.href)} ${(linkObject.status)} ${(linkObject.case)} ${(linkObject.text)}`
                       const noLinks = `${(inputPath)} ${(linkObject.href)}`
                       console.log(linkObject.href === 'There are not links' ? noLinks : dataStatus);
                   })
