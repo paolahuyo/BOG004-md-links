@@ -1,5 +1,6 @@
 const methods = require ("./methods.js");
 const cli = require ("./cli.js");
+const { response } = require("express");
 
 var inputPath = process.argv[2];
 var moreOptions = process.argv[3];
@@ -52,15 +53,17 @@ const evaluateCli = (path, options = {}) => {
               res.forEach((linkObject) => {
                   if (linkObject.status >= 400) {
                       brokenlinks.push(linkObject.status);
-                      console.log(brokenlinks);
+                      console.log("Broken links:",brokenlinks);
                   }
+                  //console.log("Unique links",uniqueLinks[linkObject.href]);
                   uniqueLinks[linkObject.href] = uniqueLinks[linkObject.href]
                   ? uniqueLinks[linkObject.href] + 1 : 1;
               });
+              //console.log(options.stats);
               if (options.stats) { //When the option has validate and also has --stats
-                  console.log("Total:", res.lenght);
-                  console.log("Unique:", Object.keys(uniqueLinks).lenght);
-                  console.log("Broken:", brokenlinks.lenght);
+                  console.log("Total:",res.length);
+                  console.log("Unique:",Object.keys(uniqueLinks).length);
+                  console.log("Broken:",brokenlinks.length);
               } else { //When the option has --validate but hasn't --stats
                   res.forEach((linkObject) => {
                       const dataStatus = `${(inputPath)} ${(linkObject.href)} ${(linkObject.status)} ${(linkObject.case)} ${(linkObject.text)}`
