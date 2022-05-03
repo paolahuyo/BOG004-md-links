@@ -20,7 +20,7 @@ const mdlinks = (routeInput, optionsInput = {}) => {
               : console.log('There are not md files');
               resolve(validGetLinks)
           } else { //When the option validate is true - is written
-              console.log("Validate True");
+              //console.log("Validate True");
               const validFetchStatus = methods.getMdFiles(routeInput) !== '' 
               ? methods.fetchStatus(routeInput)
               : console.log('There are not md files');
@@ -30,6 +30,7 @@ const mdlinks = (routeInput, optionsInput = {}) => {
   });
 }
 
+//-----------Checking the promise of the function mdlinks on .then and .catch--------------///
 mdlinks(inputPath, cli.inputOptions())
 .then((objectProperties)=>{
   console.log(objectProperties);
