@@ -95,7 +95,6 @@ const getLinksProperties = (path) => {
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
-    //console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -109,8 +108,7 @@ const getLinksProperties = (path) => {
       //console.log("properties", properties);
       linksArray.push(object);
       }
-    } else if (listLinks == 'null') { // there are not links
-      console.log("entra");
+    } else { // there are not links
       var object = {
         href: 'There are not links',
         text: '',
@@ -122,7 +120,7 @@ const getLinksProperties = (path) => {
   return linksArray
 }
 
-console.log(getLinksProperties(inputPath));
+//console.log(getLinksProperties(inputPath));
 
 //Function to get the status and case of each of the links objects
 const fetchStatus = (path) => {

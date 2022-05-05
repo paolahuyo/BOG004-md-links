@@ -91,3 +91,15 @@
  
 // // Display the file data
 // console.log(data);
+
+
+
+// mdLinks(inputPath, cli.inputOptions())
+      // .then((res) => {
+      //   res.forEach((link) => {
+      //     console.log(clcNotice(inputPath), link.href === 'There are not links' ? clcNotice(link.href) : clcValues(link.href), clcNotice(link.text));   
+      //   })
+      // })
+      // .catch((err) => {
+      //   console.log("Enter a proper route")
+      // })

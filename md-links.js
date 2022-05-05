@@ -11,13 +11,9 @@ var clcError = clc.redBright.bold.blink;
 var clcGreen = clc.green.bold.blink;
 
 const mdLinks = (routeInput, optionsInput = {}) => {
-  //console.log("entro a la funcion");
-  //console.log(routeInput);
-  //console.log(optionsInput.validate);
   return new Promise((resolve, reject) => {
-    //console.log("entro a la promesa");
     //console.log("Existencia de la ruta", methods.pathExists(routeInput));
-      if (!methods.pathExists(routeInput)) { //The route does not exist
+      if (methods.pathExists(routeInput)=="false") { //The route does not exist
           reject()
       } else { //the route exists
           //console.log("Option Validate",optionsInput.validate);
@@ -27,7 +23,6 @@ const mdLinks = (routeInput, optionsInput = {}) => {
               : console.log('There are not md files');
               resolve(validGetLinks)
           } else { //When the option validate is true - is written
-              //console.log("Validate True");
               const validFetchStatus = methods.getMdFiles(routeInput) !== '' 
               ? methods.fetchStatus(routeInput)
               : console.log('There are not md files');
@@ -43,16 +38,22 @@ const mdLinks = (routeInput, optionsInput = {}) => {
 //   console.log(objectProperties);
 // })
 // .catch(()=>{
-//   console.log("La ruta no existe");
+//   console.log("The route does not exists");
 // });
 
 //----------- Function that evaluates the path and the options and returns the final output --------------///
 const evaluateCli = (path, options = {}) => {
   if (!moreOptions){
-      //console.log("You Should enter a valid option: --validate or/and --stats to evaluate links of .md files")
+      mdLinks(inputPath, cli.inputOptions()).then((res) => {
+        res.forEach((link) => {
+          console.log(clcNotice(inputPath), link.href === 'There are not links' ? clcNotice(link.href) : clcValues(link.href), clcNotice(link.text));   
+        });
+      })
+      .catch((err) => {
+        console.log("Enter a proper route");
+      })
   } else {
       if (options.validate) { // When the options have --validate
-          //console.log("Enter validate");
           mdLinks(inputPath, cli.inputOptions()).then((res) => {
               const uniqueLinks = {};
               const brokenlinks = [];
@@ -83,7 +84,6 @@ const evaluateCli = (path, options = {}) => {
               console.log(clcError(err));
           })   // Finish the case when the input has --validate
       } else if (options.stats) { //When the option only has --stats
-          //console.log("Enter stats");
           mdLinks(inputPath, cli.inputOptions())
             .then((res) => {
               const uniqueLinks = {};
