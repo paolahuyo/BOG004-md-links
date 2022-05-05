@@ -1,16 +1,14 @@
 const methods = require ("./methods.js");
 const cli = require ("./cli.js");
-const { response } = require("express");
 var clc = require("cli-color");
-const { links } = require("express/lib/response");
 
 var inputPath = process.argv[2];
 var moreOptions = process.argv[3];
 //Variables to color outputs
 var clcValues = clc.yellow;
 var clcNotice = clc.cyanBright.bold;
-var clcError = clc.redBright.blink;
-var clcGreen = clc.green;
+var clcError = clc.redBright.bold.blink;
+var clcGreen = clc.green.bold.blink;
 
 const mdLinks = (routeInput, optionsInput = {}) => {
   //console.log("entro a la funcion");
