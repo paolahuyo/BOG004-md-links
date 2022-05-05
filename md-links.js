@@ -75,6 +75,7 @@ const evaluateCli = (path, options = {}) => {
                       const dataStatus = `${clcNotice(inputPath)} ${clcValues(linkObject.href)} ${linkObject.status >= 400 ? clcError(linkObject.status, linkObject.case) : clcGreen(linkObject.status, linkObject.case)} ${clcValues(linkObject.text)}`
                       const noLinks = `${clcNotice(inputPath)} ${clcValues(linkObject.href)}`
                       console.log(linkObject.href === 'There are not links' ? noLinks : dataStatus);
+                      console.log(linkObject.href);
                   })
               } 
           })
