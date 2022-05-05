@@ -18,8 +18,8 @@ var inputOptions = () =>{
     return options
 }
 
-console.log("Objeto de opciones en cli:", inputOptions());
-console.log("Path de entrada:",inputPath);
+//console.log("Objeto de opciones en cli:", inputOptions());
+//console.log("Path de entrada:",inputPath);
 
 // mdLinks(inputPath, inputOptions())
 // .then((objectProperties)=>{
