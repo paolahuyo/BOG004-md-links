@@ -16,16 +16,16 @@
     "type": "git",
     "url": "git+https://github.com/paolahuyo/BOG004-md-links/.git"
   },
-  "author":{
+  "author": {
     "name": "Angela Paola Huyo Millan",
     "email": "di.paolahuyo@gmail.com",
     "url": "https://www.paolahuyo.com.co"
   },
-    "license": "ISC",
-    "bin": {
-      "md-links": "./src/md-links.js"
+  "license": "ISC",
+  "bin": {
+    "md-links": "./src/md-links.js"
   },
-   "scripts": {
+  "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
@@ -43,11 +43,14 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
-    "jest": "^27.0.1",
+    "jest": "^27.5.1",
     "regenerator-runtime": "^0.13.1",
     "serve": "^13.0.2",
     "stylelint": "^14.1.0",
     "stylelint-config-recommended": "^6.0.0"
+  },
+  "jest": {
+    "testEnvironment" : "node"
   },
   "dependencies": {
     "axios": "^0.27.2",
