@@ -26,12 +26,13 @@
     "md-links": "./src/md-links.js"
   },
   "scripts": {
+    "dev": "cross-env NODE_ENV=development node src/md-links.js",
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest.off": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --verbose --coverage",
-    "start": "serve -s src/",
+    "test": "cross-env NODE_ENV=test jest --verbose --coverage",
+    "start": "cross-env NODE_ENV=production node src/md-links.js",
     "lint": "eslint ./"
   },
   "devDependencies": {
