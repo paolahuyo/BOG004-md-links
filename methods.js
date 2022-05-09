@@ -29,7 +29,7 @@ var checkDir = (route) => {
   return isDir;
 }
 
-//Returns the list of files in a directory returns a boolean
+//Returns the list of files in a directory
 var readDir = (route) => fs.readdirSync(route, 'utf-8');
 
 //Checks if a file is a markdown (.md) file
@@ -173,107 +173,3 @@ module.exports = {
   getLinksProperties,
   fetchStatus
 };
-
-//Function to get the array with .md files to analize and the errors in the route
-
-// const getMdFiles = (path) => {
-//   var mdFiles = [];
-//   if (pathExists(path)) {
-//       var routeAbsolute = pathCheck(path);
-//       //console.log("ruta absoluta",routeAbsolute);
-//       var dir = checkDir(routeAbsolute);
-//       //console.log("es directorio?",dir);
-//       var ext = checkExt(routeAbsolute);
-//       if (dir) { //When it's a directory
-//         var listFilesDir = readDir(routeAbsolute);
-//         listFilesDir.forEach((dirFile) => {
-//             var joinedPath = joinPath(routeAbsolute, dirFile);
-//             var recheck = getMdFiles(joinedPath);
-//             mdFiles = mdFiles.concat(recheck);
-//         });
-//         return mdFiles.length !== 0 ?mdFiles : 'The directory does not have files'
-//       } if(ext) { //When it's a file
-//         console.log(checkMarkdown(routeAbsolute));
-//          if (checkMarkdown(routeAbsolute) == "true") { //When it's a .md
-//             mdFiles = mdFiles.concat(routeAbsolute);
-//             return mdFiles
-//           } else {
-//             return 'This is not an .md file, this program only checks md files'
-//             // return 'This route does not have an md file and this program only checks md files'
-//             }
-//         } else {
-//           return 'this is not a file or directory check and try again'
-//         } 
-//   } else {
-//       //return mdFiles
-//       return 'The input route does not exists or the file does not have any extension'
-//   }
-// };
-
-//Function to get the array with .md files with errors
-// const getMdFiles = (path) => {
-//   var mdFiles = [];
-//   if (pathExists(path)) {
-//       var routeAbsolute = pathCheck(path);
-//       console.log(routeAbsolute);
-//       var isFile = checkExt(routeAbsolute);
-//       console.log(isFile);
-//       if (isFile === ".md") { //When it's a file
-//         if (checkMarkdown) { //When it's a .md
-//           mdFiles = mdFiles.concat(routeAbsolute);
-//           return mdFiles
-//         } else {
-//           return 'This route does not have an md file and this program only checks md files'
-//           }
-//       } else { //When it's a directory
-//         var dir = checkDir(routeAbsolute);
-//         if (dir) {
-//           var listFilesDir = readDir(routeAbsolute);
-//           listFilesDir.forEach((dirFile) => {
-//               var joinedPath = joinPath(routeAbsolute, dirFile);
-//               var recheck = getMdFiles(joinedPath);
-//               mdFiles = mdFiles.concat(recheck);
-//           });
-//           return mdFiles.length !== 0 ? mdFiles : 'The directory does not have files'
-//         } 
-//       }    
-//   } else {
-//       return 'The input route does not exists'
-//   }
-// };
-
-//----------------------function with axios evaluating links-----------------------------
-// const validateLinks = (links) => {
-//     return new Promise ((resolve) =>{
-//         const promiseArray = [];
-//         links.forEach((link) => {
-//             promiseArray.push(new Promise((resolve)=>{
-//                 axios.get(link.href).then(response => {
-//                 link.status = response.status;
-//                 link.ok = true;
-//                 resolve();
-//                 }).catch(error => {
-//                     let status = 500; // unknown error
-//                     if (error.response) {
-//                         status = error.response.status;// the server says some error
-//                     }
-//                     if (error.request) {
-//                         status = 503; // the server is not ready to handle the request
-//                     }
-//                     link.status = status;
-//                     link.ok = false;
-//                     resolve();
-//                 });
-//             }));
-//         });
-
-//         //se resuelven todas las promesas al tiempo
-//         Promise.all(promiseArray).then(() => {
-//             resolve(links);
-//         })
-//     });
-// }
-
-// console.log(validateLinks(getLinksProperties(inputPath)));
-
-

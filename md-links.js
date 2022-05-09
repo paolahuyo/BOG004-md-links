@@ -4,6 +4,7 @@ var clc = require("cli-color");
 
 var inputPath = process.argv[2];
 var moreOptions = process.argv[3];
+
 //Variables to color outputs
 var clcValues = clc.yellow;
 var clcNotice = clc.cyanBright.bold;
@@ -40,6 +41,7 @@ const mdLinks = (routeInput, optionsInput = {}) => {
 // .catch(()=>{
 //   console.log("The route does not exists");
 // });
+//
 
 //----------- Function that evaluates the path and the options and returns the final output --------------///
 const evaluateCli = (path, options = {}) => {
