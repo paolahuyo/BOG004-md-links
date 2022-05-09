@@ -160,7 +160,7 @@ const fetchStatus = (path) => {
     return Promise.all(getStatus)
 }
 
-//console.log(fetchStatus(inputPath));
+// console.log(fetchStatus(inputPath));
 
 // fetchStatus(inputPath).then( (arrayProp) => {
 //     console.log(arrayProp);

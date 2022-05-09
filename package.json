@@ -2,7 +2,7 @@
   "name": "@paolahuyo/md-links",
   "version": "1.0",
   "description": "Library that reads .md files and validates the status of the links inside .md files and can gives statistics",
-  "main": "./md-links.js",
+  "main": "./src/md-links.js",
   "keywords": [
     "mdlinks",
     "mdlinks stats",
@@ -23,7 +23,7 @@
   },
     "license": "ISC",
     "bin": {
-      "md-links": "./md-links.js"
+      "md-links": "./src/md-links.js"
   },
    "scripts": {
     "htmlhint": "htmlhint dist/*.html ",

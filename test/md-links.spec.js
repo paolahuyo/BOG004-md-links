@@ -1,6 +1,6 @@
-const mdLinks = require('../md-links');
-const cli = require("../cli.js");
-const methods = require("../methods.js");
+const mdLinks = require('../src/md-links');
+const cli = require("../src/cli.js");
+const methods = require("../src/methods.js");
 
 describe('Checking path, pathExists', () => {
   it('Is gonna validate if the path exists', () => {
@@ -55,11 +55,65 @@ describe('Reads a file', () => {
   });
 });
 
+describe('Evaluates fetchStatus', () => {
+  it('Gets the status of the links and returns an array with links properties (status: 200)', () => {
+    const response = [
+      {
+      href: 'https://github.com/workshopper/learnyounode',
+      text: 'learnyounode',
+      file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/only-onelink.md',
+      status: 200,
+      case: 'ok'
+      }
+    ]
+    return expect(methods.fetchStatus('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/only-onelink.md')).resolves.toEqual(response);
+  });
+  it('Gets the status of the links and returns an array with links properties (status: 400)', () => {
+    const rejected = [
+      {
+        href: 'https://www.rottentomatoes.com/tv/only_murders_in_the_building/s010204',
+        text: 'ONLY MURDERS IN THE BUILDING: SEASON 1 (2021)',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/series-errors.md',
+        status: 403,
+        case: 'fail'
+      },
+      {
+        href: 'https://github.com/workshopper/learnyounode',
+        text: 'learnyounode',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/series-errors.md',
+        status: 200,
+        case: 'ok'
+      }
+    ]
+    return expect(methods.fetchStatus('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/series-errors.md')).resolves.toEqual(rejected);
+  })
+});
 
-// describe('mdLinks', () => { 
-
-//   it('should...', () => {
-//     console.log('FIX ME!');
-//   });
-
-// });
+describe('Evaluates mdLinks ', () => {
+  it('Should return an array with objects (validate: true)', () => {
+    const validateMdLinks = [
+      {
+        href: 'https://github.com/workshopper/learnyounode',
+        text: 'learnyounode',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+        status: 200,
+        case: 'ok'
+      },
+      {
+        href: 'https://github.com/workshopper/how-to-npm',
+        text: 'how-to-npm',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+        status: 200,
+        case: 'ok'
+      },
+      {
+        href: 'https://github.com/stevekane/promise-it-wont-hurt',
+        text: 'promise-it-wont-hurt',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+        status: 200,
+        case: 'ok'
+      }
+    ]
+    return expect(mdLinks('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md', { validate: true , stats: false })).resolves.toEqual(validateMdLinks);
+  });
+});

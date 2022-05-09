@@ -13,7 +13,7 @@ var clcGreen = clc.green.bold.blink;
 
 const mdLinks = (routeInput, optionsInput = {}) => {
   return new Promise((resolve, reject) => {
-    //console.log("Existencia de la ruta", methods.pathExists(routeInput));
+    //console.log("The route exists", methods.pathExists(routeInput));
     if (methods.pathExists(routeInput) == "false") { //The route does not exist
       reject()
     } else { //the route exists
@@ -41,7 +41,7 @@ const mdLinks = (routeInput, optionsInput = {}) => {
 // .catch(()=>{
 //   console.log("The route does not exists");
 // });
-//
+
 
 //----------- Function that evaluates the path and the options and returns the final output --------------///
 const evaluateCli = (path, options = {}) => {

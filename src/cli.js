@@ -1,5 +1,3 @@
-const mdLinks = require('./md-links');
-
 var options = {
     validate: false,
     stats: false
@@ -14,6 +12,8 @@ var inputOptions = () => {
     }
     return options
 }
+
+console.log(inputOptions())
 
 module.exports = {
     inputOptions
