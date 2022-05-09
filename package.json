@@ -1,8 +1,14 @@
 {
   "name": "@paolahuyo/md-links",
   "version": "1.0",
-  "description": "librería que lee archivos .md y valida el status http de cada link",
-  "main": "md-links.js",
+  "description": "Library that reads .md files and validates the status of the links inside .md files and can gives statistics",
+  "main": "./md-links.js",
+  "keywords": [
+    "mdlinks",
+    "mdlinks stats",
+    "mdlinks validate",
+    "laboratoria mdlinks"
+  ],
   "engines": {
     "node": ">=14.x"
   },
@@ -10,26 +16,31 @@
     "type": "git",
     "url": "git+https://github.com/paolahuyo/BOG004-md-links/.git"
   },
-  "author": "Angela Paola Huyo",
-  "license": "ISC",
-  "bin": {
-    "md-links": "cli.js"
+  "author":{
+    "name": "Angela Paola Huyo Millan",
+    "email": "di.paolahuyo@gmail.com",
+    "url": "https://www.paolahuyo.com.co"
   },
-  "scripts": {
+    "license": "ISC",
+    "bin": {
+      "md-links": "./md-links.js"
+  },
+   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest.off": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --env=jsdom --coverage",
-    "start": "serve -s src/"
+    "test": "jest --coverage",
+    "start": "serve -s src/",
+    "lint": "eslint ./"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "babel-jest": "^27.0.1",
-    "eslint": "^8.3.0",
+    "eslint": "^8.15.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^25.3.0",
     "htmlhint": "^1.0.0",
     "jest": "^27.0.1",

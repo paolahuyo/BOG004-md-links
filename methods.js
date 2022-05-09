@@ -2,6 +2,7 @@ const path  = require('path');
 const fs = require('fs');
 const axios = require('axios');
 const fetch = require('node-fetch');
+const { Console } = require('console');
 
 var inputPath = process.argv[2];
 
@@ -29,8 +30,10 @@ var checkDir = (route) => {
   return isDir;
 }
 
+
 //Returns the list of files in a directory
 var readDir = (route) => fs.readdirSync(route, 'utf-8');
+//console.log(readDir(inputPath));
 
 //Checks if a file is a markdown (.md) file
 var checkMarkdown = (route) => {
@@ -41,6 +44,7 @@ var checkMarkdown = (route) => {
     return false; //it's not an .md file
     }
 }
+
 
 //Reads a file---Not for directories only for files
 var readFile = (route) => fs.readFileSync(route, 'utf-8');
