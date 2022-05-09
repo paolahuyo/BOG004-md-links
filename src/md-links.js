@@ -2,6 +2,7 @@ const methods = require("./methods.js");
 const cli = require("./cli.js");
 var clc = require("cli-color");
 
+//Variables that capture the path in inputPath and (--validate and --stats) in moreOptions
 var inputPath = process.argv[2];
 var moreOptions = process.argv[3];
 
