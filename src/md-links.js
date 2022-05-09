@@ -107,5 +107,6 @@ const evaluateCli = (path, options = {}) => {
 evaluateCli(inputPath, cli.inputOptions())
 
 module.exports = {
-  mdLinks
+  mdLinks,
+  evaluateCli
 }
