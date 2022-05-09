@@ -6,7 +6,7 @@ const { Console } = require('console');
 
 var inputPath = process.argv[2];
 
-//-------------------Created methods------------------------//
+//------------------------Created methods------------------------//
 //Checks if the path exists and returns boolean
 const pathExists = (route) => fs.existsSync(route); 
 

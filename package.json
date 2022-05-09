@@ -1,8 +1,8 @@
 {
   "name": "@paolahuyo/md-links",
   "version": "1.0",
-  "description": "Library that reads .md files and validates the status of the links inside .md files and can gives statistics",
-  "main": "./src/md-links.js",
+  "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
+  "main": "/src/md-links.js",
   "keywords": [
     "mdlinks",
     "mdlinks stats",
@@ -23,16 +23,16 @@
   },
   "license": "ISC",
   "bin": {
-    "md-links": "./src/md-links.js"
+    "md-links": "/src/md-links.js"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node src/md-links.js",
+    "dev": "NODE_ENV=development node src/md-links.js",
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest.off": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "cross-env NODE_ENV=test jest --verbose --coverage",
-    "start": "cross-env NODE_ENV=production node src/md-links.js",
+    "test": "NODE_ENV=test jest --verbose --coverage",
+    "start": "NODE_ENV=production node src/md-links.js",
     "lint": "eslint ./"
   },
   "devDependencies": {
