@@ -2,6 +2,15 @@ const mdLinks = require('../src/md-links');
 const cli = require("../src/cli.js");
 const methods = require("../src/methods.js");
 
+//--------To check in test camp-------//
+// describe('Checking the object of options, cli.inputOptions', () => {
+//   it('Check input options for --validate', () => {
+//     process.argv = 'node md-links ./md-files/no-md-files/errorfile.txt --validate'
+//     const valTrue = { validate: true, stats: false }
+//     expect(cli.inputOptions()).toBe(valTrue)
+//   });
+// });
+
 describe('Checking path, pathExists', () => {
   it('Is gonna validate if the path exists', () => {
     expect(methods.pathExists('./md-files/no-md-files/errorfile.txt')).toBeTruthy()
@@ -89,31 +98,33 @@ describe('Evaluates fetchStatus', () => {
   })
 });
 
-describe('Evaluates mdLinks ', () => {
-  it('Should return an array with objects (validate: true)', () => {
-    const validateMdLinks = [
-      {
-        href: 'https://github.com/workshopper/learnyounode',
-        text: 'learnyounode',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      },
-      {
-        href: 'https://github.com/workshopper/how-to-npm',
-        text: 'how-to-npm',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      },
-      {
-        href: 'https://github.com/stevekane/promise-it-wont-hurt',
-        text: 'promise-it-wont-hurt',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      }
-    ]
-    return expect(mdLinks('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md', { validate: true , stats: false })).resolves.toEqual(validateMdLinks);
-  });
-});
+
+//--------To check in test camp-------//
+// describe('Evaluates mdLinks ', () => {
+//   it('Should return an array with objects (validate: true)', () => {
+//     const validateMdLinks = [
+//       {
+//         href: 'https://github.com/workshopper/learnyounode',
+//         text: 'learnyounode',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       },
+//       {
+//         href: 'https://github.com/workshopper/how-to-npm',
+//         text: 'how-to-npm',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       },
+//       {
+//         href: 'https://github.com/stevekane/promise-it-wont-hurt',
+//         text: 'promise-it-wont-hurt',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       }
+//     ]
+//     return expect(mdLinks('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md', { validate: true , stats: false })).resolves.toEqual(validateMdLinks);
+//   });
+// });
