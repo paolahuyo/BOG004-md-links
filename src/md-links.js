@@ -49,7 +49,7 @@ const evaluateCli = (path, options = {}) => {
   if (!moreOptions) {
     mdLinks(inputPath, cli.inputOptions()).then((res) => {
       res.forEach((link) => {
-        console.log(clcNotice(inputPath), link.href === 'There are not links' ? clcNotice(link.href) : clcValues(link.href), clcNotice(link.text));
+        console.log(clcNotice(inputPath), link.href === clcError('There are not links') ? clcNotice(link.href) : clcValues(link.href), clcNotice(link.text));
       });
     })
       .catch((err) => {
