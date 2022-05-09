@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 var inputPath = process.argv[2];
 
-//-------------------Created methods------------------------
+//-------------------Created methods------------------------//
 //Checks if the path exists and returns boolean
 const pathExists = (route) => fs.existsSync(route); 
 
@@ -80,21 +80,23 @@ const getMdFiles = (path) => {
 
 //console.log(getMdFiles(inputPath));
 
+///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
+//var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
+
 var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
 var regexTextUrl = /\[(.*)\]\((.*)\)/;
 var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
-///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
-//var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
 var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 
 //Function to read the .mdfiles and returning the links and the properties of the links
 const getLinksProperties = (path) => {
   var files = getMdFiles(path);
-  //console.log(files);
+  //console.log("files", files);
   var linksArray = [];
   files.forEach((fileInput) => {
     var insideFile = readFile(fileInput);
     var listLinks = insideFile.match(regexTextUrlGlobal);
+    //console.log("listLinks", listLinks);
     if (listLinks) {
       for (let i = 0; i < listLinks.length; i++) {
         const exec = regexTextUrl.exec(listLinks[i]);
@@ -109,12 +111,14 @@ const getLinksProperties = (path) => {
       linksArray.push(object);
       }
     } else { // there are not links
+       //console.log(" entra si no hay links");
       var object = {
         href: 'There are not links',
         text: '',
         file: fileInput
         }
-        linksArray = object;
+        linksArray.push(object);
+        //console.log("linksArray", linksArray)
       }
   });
   return linksArray
