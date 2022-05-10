@@ -1,10 +1,11 @@
 {
   "name": "@paolahuyo/md-links",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
   "main": "src/md-links.js",
   "files": [
-    "src/"
+    "src/",
+    "md-files/"
   ],
   "author": {
     "name": "Angela Paola Huyo",
