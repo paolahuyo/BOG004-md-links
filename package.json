@@ -4,7 +4,6 @@
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
   "main": "src/md-links.js",
   "files": [
-    "bin/",
     "src/"
   ],
   "author": {
@@ -14,13 +13,13 @@
   },
   "license": "MIT",
   "bin": {
-    "md-links": "src/md-links.js",
-    "@paolahuyo/md-links": "src/md-links.js"
+    "md-links": "src/md-links.js"
   },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
+    "markdown",
     "mdlinks",
     "mdlinks stats",
     "mdlinks validate",

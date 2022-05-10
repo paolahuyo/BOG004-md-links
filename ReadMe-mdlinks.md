@@ -12,31 +12,11 @@
 * [4. GitHub Projects](#4-GitHub-Projects)
 * [5. User Stories](#4-User-Stories)
 
-
 ***
 
 ### 1) Installation Guide
 
-* Este proyecto se debe "resolver" de manera individual.
-
-* La **librería** y el **script ejecutable** (herramienta de línea de comando -
-  CLI) deben estar implementados en JavaScript para ser ejecutados con
-  Node.js. **Está permitido usar librerías externas**.
-
-* Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
-  módulo debe incluir tanto un _ejecutable_ que podamos invocar en la línea de
-  comando como una interfaz que podamos importar con `require` para usarlo
-  programáticamente.
-
-* Los **tests unitarios** deben cubrir un mínimo del 70% de _statements_,
-  _functions_, _lines_ y _branches_. Te recomendamos explorar [Jest](https://jestjs.io/)
-  para tus pruebas unitarias.
-
-* Para este proyecto **no está permitido** utilizar `async/await`.
-
-* Para este proyecto es **opcional** el uso de ES Modules `(import/export)`, en el
-  caso optes utilizarlo deberás de crear un script de `build` en el `package.json`
-  que los transforme en `requires` y `module.exports` con ayuda de **babel**.
+* The user **can install the mdlinks module** directly with `npm install @paolahuyo/md-links`. This module has an _executable_ that the user can call in cli as an interface to import with `require` to be used programmaticaly.
 
   ### Folders and Files
 
@@ -57,7 +37,7 @@ The module can be used executing the app as follows through the **terminal**:
 `md-links <path-to-file> [options]`
 
 * `<path-to-file>`: **Absolute** or **relative** path to the **file** or **directory**.
-If the path passed is relative, the module resolves to relative to the directory
+If the path written is relative, the module resolves to relative to the directory
 
 * `[options]`: 
 Options can be --validate, --stats or both
@@ -172,7 +152,3 @@ Para que el módulo sea instalable desde GitHub solo tiene que:
 Con el comando `npm install githubname/reponame` podemos instalar directamente
 desde GitHub. Ver [docs oficiales de `npm install` acá](https://docs.npmjs.com/cli/install).
 
-Por ejemplo, el [`course-parser`](https://github.com/Laboratoria/course-parser)
-que usamos para la currícula no está publicado en el registro público de NPM,
-así que lo instalamos directamente desde GitHub con el comando `npm install
-Laboratoria/course-parser`.
