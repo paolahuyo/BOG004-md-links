@@ -135,7 +135,7 @@ If you want to check the whole process, check this link [GitHub Project mdlinks 
 
 ### Issues 
 
-If you want to check the issues, check this link [GitHub Issues mdlinks @paolahuyo](https://github.com/paolahuyo/BOG004-md-links/issues)
+If you want to check the issues, check this link [GitHub Issues mdlinks @paolahuyo](https://github.com/paolahuyo/BOG004-md-links/issues?q=is%3Aissue+is%3Aclosed)
 
 ### Milestones
 
