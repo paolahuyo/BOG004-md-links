@@ -5,13 +5,9 @@
 * [1. Development Process](#1-Development-Process)
 * [2. GitHub Projects](#2-GitHub-Projects)
 * [3. User Stories](#3-User-Stories)
-* [4. Instructions](#4-Instructions)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
-* [6. Entregables](#6-entregables)
-* [7. Hacker edition](#7-hacker-edition)
-* [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
-* [9. Checklist](#9-checklist)
-* [10. Achicando el problema](#10-achicando-el-problema)
+* [4. User Manual](#4-User-Manual)
+* [5. Installation Guide](#5-Installation-Guide)
+* [6. Examples](#6-Examples)
 
 ***
 
@@ -170,14 +166,17 @@ mdLinks("./some/dir")
   .catch(console.error);
 ```
 
-### 2) CLI (Command Line Interface - Interfaz de Línea de Comando)
+### 2) CLI (Command Line Interface)
 
-El ejecutable de nuestra aplicación debe poder ejecutarse de la siguiente
-manera a través de la **terminal**:
+The module can be used executing the app as follows through the **terminal**:
 
 `md-links <path-to-file> [options]`
 
-Por ejemplo:
+Options can be --validate, --stats or both
+
+If the user doesn't write an option the output is going to be this one:
+
+Example:
 
 ```sh
 $ md-links ./some/example.md
@@ -186,21 +185,19 @@ $ md-links ./some/example.md
 ./some/example.md http://google.com/ Google
 ```
 
-El comportamiento por defecto no debe validar si las URLs responden ok o no,
-solo debe identificar el archivo markdown (a partir de la ruta que recibe como
-argumento), analizar el archivo Markdown e imprimir los links que vaya
-encontrando, junto con la ruta del archivo donde aparece y el texto
-que hay dentro del link (truncado a 50 caracteres).
+The default behavior doesn't validate if the URLs respond ok or not,
+it just identify the markdown file (from the path written as an
+argument), parse the Markdown file and print the links that find, along with the file path where it appears and the text inside the link (truncated to 50 characters).
 
 #### Options
 
 ##### `--validate`
 
-Si pasamos la opción `--validate`, el módulo debe hacer una petición HTTP para
-averiguar si el link funciona o no. Si el link resulta en una redirección a una
-URL que responde ok, entonces consideraremos el link como ok.
+If the user writtes the `--validate` option, the module makr an HTTP request to
+find out if the link works or not. If the link results in a redirect to a
+URL that responds ok and the module consider the link as ok.
 
-Por ejemplo:
+Example:
 
 ```sh
 $ md-links ./some/example.md --validate
@@ -209,14 +206,13 @@ $ md-links ./some/example.md --validate
 ./some/example.md http://google.com/ ok 301 Google
 ```
 
-Vemos que el _output_ en este caso incluye la palabra `ok` o `fail` después de
-la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
-URL.
+In this case the _output_ includes the word `ok` or `fail` after
+the URL, as well as the status of the response received to the HTTP request to that
+URLs.
 
 ##### `--stats`
 
-Si pasamos la opción `--stats` el output (salida) será un texto con estadísticas
-básicas sobre los links.
+If the user writtes the `--stats` option the output will be a text with statistics
 
 ```sh
 $ md-links ./some/example.md --stats
@@ -224,8 +220,8 @@ Total: 3
 Unique: 3
 ```
 
-También podemos combinar `--stats` y `--validate` para obtener estadísticas que
-necesiten de los resultados de la validación.
+The user can also writte the combination of `--stats` and `--validate` to get statistics that
+need the validation results.
 
 ```sh
 $ md-links ./some/example.md --stats --validate

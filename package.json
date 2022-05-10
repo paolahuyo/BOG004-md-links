@@ -3,15 +3,22 @@
   "version": "1.0.0",
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
   "main": "src/md-links.js",
+  "files": [
+    "bin/",
+    "src/"
+  ],
   "author": {
     "name": "Angela Paola Huyo",
     "email": "di.paolahuyo@gmail.com",
     "url": "https://www.paolahuyo.com.co"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bin": {
     "md-links": "src/md-links.js",
     "@paolahuyo/md-links": "src/md-links.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "mdlinks",

@@ -1,6 +1,5 @@
 const path  = require('path');
 const fs = require('fs');
-const axios = require('axios');
 const fetch = require('node-fetch');
 
 var inputPath = process.argv[2];

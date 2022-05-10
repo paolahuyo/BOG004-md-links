@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 const methods = require("./methods.js");
 const cli = require("./cli.js");
 var clc = require("cli-color");
