@@ -81,7 +81,7 @@ const evaluateCli = (path, options = {}) => {
             const noLinks = `${clcNotice(inputPath)} ${clcError(linkObject.href)}`
             console.log(linkObject.href === 'There are not links' ? noLinks : dataStatus);
             //console.log(linkObject.href);
-          })
+          }) 
         }
       })
         .catch((err) => {
