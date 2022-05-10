@@ -102,9 +102,14 @@ Broken: 1
 ```
 ## 3. Examples
 
-
-
-
+1. `md-links <path-to-file>`
+![no options](https://i.imgur.com/ZaookO0.png)
+2. `md-links <path-to-file> [options: --validate]`
+![--validate](https://i.imgur.com/UfjuYRL.png)
+3. `md-links <path-to-file> [options: --stats]`
+![--stats](https://i.imgur.com/qeTiOna.png)
+4. `md-links <path-to-file> [options: --validate --stats]`
+![--validate && --stats](https://i.imgur.com/IEYOrPO.png)
 
 ***
 
