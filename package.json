@@ -59,9 +59,10 @@
     "stylelint-config-recommended": "^6.0.0"
   },
   "jest": {
-    "testEnvironment" : "node"
+    "testEnvironment": "node"
   },
   "dependencies": {
+    "@paolahuyo/md-links": "^1.0.5",
     "cli-color": "^2.0.2",
     "node-fetch": "^2.6.7"
   }
