@@ -1,6 +1,6 @@
 {
   "name": "@paolahuyo/md-links",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
   "main": "src/md-links.js",
   "files": [
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "bin": {
-    "md-links": "src/md-links.js"
+    "md-links": "src"
   },
   "publishConfig": {
     "access": "public"

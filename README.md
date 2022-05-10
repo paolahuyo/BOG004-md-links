@@ -1,5 +1,4 @@
 ## MARKDOWN LINKS (Paola Huyo - Laboratoria BOG004)
-> [time=Tue, May 10, 2022 4:21 PM]
 
 ---
 
@@ -123,9 +122,9 @@ This project was made as a CLI module and as a Javascript library.
 
 ### Flowchart
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FhDvwKquJDirVtxmZttWwpk%2FDIAGRAMA-DE-FLUJO-MDLINKS%3Fnode-id%3D59%253A161" allowfullscreen></iframe>
+`<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FhDvwKquJDirVtxmZttWwpk%2FDIAGRAMA-DE-FLUJO-MDLINKS%3Fnode-id%3D59%253A161" allowfullscreen></iframe>`
 
-[FIGMA FLOWCHART](https:////www.figma.com/file/hDvwKquJDirVtxmZttWwpk/DIAGRAMA-DE-FLUJO-MDLINKS?node-id=59%3A161)
+[FIGMA FLOWCHART](https://www.figma.com/file/hDvwKquJDirVtxmZttWwpk/MDLINKS-Flowchart?node-id=0%3A1)
 
 ## 5. GitHub Project
 
