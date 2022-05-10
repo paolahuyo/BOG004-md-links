@@ -29,7 +29,6 @@ var checkDir = (route) => {
   return isDir;
 }
 
-
 //Returns the list of files in a directory
 var readDir = (route) => fs.readdirSync(route, 'utf-8');
 //console.log(readDir(inputPath));
