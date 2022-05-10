@@ -78,7 +78,7 @@ const evaluateCli = (path, options = {}) => {
         } else { //When the option has --validate but hasn't --stats
           res.forEach((linkObject) => {
             const dataStatus = `${clcNotice(inputPath)} ${clcValues(linkObject.href)} ${linkObject.status >= 400 ? clcError(linkObject.status, linkObject.case) : clcGreen(linkObject.status, linkObject.case)} ${clcValues(linkObject.text)}`
-            const noLinks = `${clcNotice(inputPath)} ${clcValues(linkObject.href)}`
+            const noLinks = `${clcNotice(inputPath)} ${clcError(linkObject.href)}`
             console.log(linkObject.href === 'There are not links' ? noLinks : dataStatus);
             //console.log(linkObject.href);
           })

@@ -1,8 +1,8 @@
 {
   "name": "@paolahuyo/md-links",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
-  "main": "/src/md-links.js",
+  "main": "src/md-links.js",
   "keywords": [
     "mdlinks",
     "mdlinks stats",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paolahuyo/BOG004-md-links/.git"
+    "url": "https://github.com/paolahuyo/BOG004-md-links"
   },
   "author": {
     "name": "Angela Paola Huyo Millan",
@@ -23,7 +23,7 @@
   },
   "license": "ISC",
   "bin": {
-    "md-links": "/src/md-links.js"
+    "md-links": "src/md-links.js"
   },
   "scripts": {
     "dev": "NODE_ENV=development node src/md-links.js",
@@ -54,10 +54,7 @@
     "testEnvironment" : "node"
   },
   "dependencies": {
-    "axios": "^0.27.2",
     "cli-color": "^2.0.2",
-    "express": "^4.17.3",
-    "node-fetch": "^2.6.7",
-    "nodemon": "^2.0.15"
+    "node-fetch": "^2.6.7"
   }
 }
