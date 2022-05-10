@@ -49,10 +49,18 @@ describe('Check if the path is a directory, checkDir', ()=>{
 
 // describe('Returns list of files in the directory, readDir', () =>{
 //   it('Gives list of files', () => {
-//     const listFilesOne = [ 'laboratoria-links.md', 'other-links.md' ];
-//     const listFilesTwo = [ 'dir-md-links', 'dir-mdwithlinks', 'file-noextension', 'no-md-files', 'nolink.md', 'series-errors.md', 'series.md' ];
-//     expect(methods.readDir('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks').toBe(listFilesOne))
-//     expect(methods.readDir('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files').toBe(listFilesTwo))
+//     const listFilesOne = [ 'laboratoria-links.md', 'only-onelink.md', 'other-links.md' ];
+//     const listFilesTwo = [
+//   'dir-md-links',
+//   'dir-mdwithlinks',
+//   'file-noextension',
+//   'no-md-files',
+//   'nolink.md',
+//   'series-errors.md',
+//   'series.md'
+// ];
+//     expect(methods.readDir('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks').toEqual(listFilesOne))
+//     expect(methods.readDir('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files').toEqual(listFilesTwo))
 //   })
 // })
 
@@ -61,6 +69,50 @@ describe('Reads a file', () => {
     const textFile = methods.readFile('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/no-md-files/errorfile.txt');
     expect(typeof textFile).toBe('string')
     expect(textFile).toMatch('Esta es una prueba para revisar el funcionamiento del código')
+  });
+});
+
+describe('Join path to read a directory', () => {
+  it('joinPath', () => {
+    const finalPath = '/md-files/series.md';
+    expect(methods.joinPath('/md-files', 'series.md')).toBe(finalPath)
+  });
+});
+
+describe('Get .md files of a directory', () => {
+  it('getMdFiles', () => {
+    const mdFiles = [
+      '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+      '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/only-onelink.md',
+      '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/other-links.md'
+    ];
+    expect(methods.getMdFiles('md-files/dir-mdwithlinks')).toEqual(mdFiles)
+  });
+});
+
+describe('Get links properties of an .md file', () => {
+  it('getLinksProperties of an .md file', () => {
+    const propertiesDone = [
+      {
+        href: 'https://github.com/workshopper/learnyounode',
+        text: 'learnyounode',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/only-onelink.md'
+      }
+    ];
+    expect(methods.getLinksProperties('md-files/dir-mdwithlinks/only-onelink.md')).toEqual(propertiesDone)
+  });
+  it('getLinksProperties of an md file without links', () => {
+    const propNoLinks = [
+      {
+        href: 'There are not links',
+        text: '',
+        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/nolink.md'
+      }
+    ]
+    expect(methods.getLinksProperties('md-files/nolink.md')).toEqual(propNoLinks)
+  });
+  it('getLinksProperties of a directory without .md files', () => {
+    expect(methods.getLinksProperties('md-files/no-md-files/errorfile.txt')).toEqual([])
   });
 });
 
@@ -99,34 +151,34 @@ describe('Evaluates fetchStatus', () => {
 });
 
 //--------To check in test camp-------//
-describe('Evaluates mdLinks ', () => {
-  it('Should return an array with objects (validate: true)', () => {
-    const validateMdLinks = [
-      {
-        href: 'https://github.com/workshopper/learnyounode',
-        text: 'learnyounode',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      },
-      {
-        href: 'https://github.com/workshopper/how-to-npm',
-        text: 'how-to-npm',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      },
-      {
-        href: 'https://github.com/stevekane/promise-it-wont-hurt',
-        text: 'promise-it-wont-hurt',
-        file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
-        status: 200,
-        case: 'ok'
-      }
-    ]
-    return expect(mdLinks('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md', { validate: true , stats: false }).resolves.toEqual(validateMdLinks));
-  });
-});
+// describe('Evaluates mdLinks ', () => {
+//   it('Should return an array with objects (validate: true)', () => {
+//     const validateMdLinks = [
+//       {
+//         href: 'https://github.com/workshopper/learnyounode',
+//         text: 'learnyounode',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       },
+//       {
+//         href: 'https://github.com/workshopper/how-to-npm',
+//         text: 'how-to-npm',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       },
+//       {
+//         href: 'https://github.com/stevekane/promise-it-wont-hurt',
+//         text: 'promise-it-wont-hurt',
+//         file: '/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md',
+//         status: 200,
+//         case: 'ok'
+//       }
+//     ]
+//     return expect(mdLinks("/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/dir-mdwithlinks/laboratoria-links.md", { validate: true , stats: false }).resolves.toBe(validateMdLinks));
+//     })
+//   });
 
 
 //expect(user.getUserName(5)).resolves.toEqual('Paul');

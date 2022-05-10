@@ -48,6 +48,7 @@ var readFile = (route) => fs.readFileSync(route, 'utf-8');
 
 //Joins different pieces of a route---When it's a directory it has to turn the files into absolute routes for each file
 const joinPath = (dir, file) => path.join(dir, file);
+//console.log(joinPath(inputPath));
 
 //Function to get the array with .md files to analize without errors
 const getMdFiles = (path) => {
