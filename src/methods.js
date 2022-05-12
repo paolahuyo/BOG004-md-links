@@ -105,7 +105,7 @@ const getLinksProperties = (path) => {
         //console.log("exec",exec);
         let object = {
           href: exec[2],
-          text: exec[1],
+          text: exec[1].substring(0, 50),
           file: fileInput
         }
       //console.log("object", object);
