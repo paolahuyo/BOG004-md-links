@@ -1,6 +1,6 @@
 {
   "name": "@paolahuyo/md-links",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Library that reads .md files and validates (--validates) the status of the links inside .md files and can gives links statistics (--stats)",
   "main": "src/md-links.js",
   "files": [
@@ -40,7 +40,7 @@
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest.off": "npm run htmlhint && npm run eslint && npm run stylelint",
     "test": "NODE_ENV=test jest --verbose --coverage",
-    "start": "NODE_ENV=production node src/md-links.js",
+    "start": "node src/md-links.js",
     "lint": "eslint ./"
   },
   "devDependencies": {
