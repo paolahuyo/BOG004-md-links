@@ -4,7 +4,7 @@
 
 ## Index
 
-### Users Manual 
+### Users Manual
 * [1. Installation Guide](#1-Installation-Guide)
 * [2. User Manual](#2-User-Manual)
 * [3. Examples](#3-Examples)
@@ -41,7 +41,7 @@ The module can be used to execute the app as follows through the **terminal**:
 * `<path-to-file>`: **Absolute** or **relative** path to the **file** or **directory**.
 If the path written is relative, the module resolves to relative to the directory
 
-* `[options]`: 
+* `[options]`:
 Options can be --validate, --stats or both
 
 If the user doesn't write an option the output is going to be this one:

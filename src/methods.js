@@ -6,7 +6,7 @@ var inputPath = process.argv[2];
 
 //------------------------Created methods------------------------//
 //Checks if the path exists and returns boolean
-const pathExists = (route) => fs.existsSync(route); 
+const pathExists = (route) => fs.existsSync(route);
 
 //Checks if it's an absolute path, if it's returns the route, if not it converts a relative path in and absolute path
 var pathCheck = (route) => path.isAbsolute(route) ? route : path.resolve(route);
@@ -15,7 +15,7 @@ var pathCheck = (route) => path.isAbsolute(route) ? route : path.resolve(route);
 var checkExt = (route) => {
   if (path.parse(route).ext !== '') {
       var fileExt = path.parse(route).ext;
-      return fileExt  //it's a file 
+      return fileExt  //it's a file
   } else {
       return false  // doesn't have extension
     }
@@ -42,7 +42,6 @@ var checkMarkdown = (route) => {
     }
 }
 
-
 //Reads a file---Not for directories only for files
 var readFile = (route) => fs.readFileSync(route, 'utf-8');
 
@@ -64,17 +63,17 @@ const getMdFiles = (path) => {
             var recheck = getMdFiles(joinedPath);
             mdFiles = mdFiles.concat(recheck);
         });
-        return mdFiles.length !== 0 ?mdFiles : mdFiles 
+        return mdFiles.length !== 0 ? mdFiles : mdFiles
       } if(ext) { //When it's a file
          if (checkMarkdown(routeAbsolute) == "true") { //When it's a .md
             mdFiles = mdFiles.concat(routeAbsolute);
             return mdFiles
           } else {
-            return mdFiles 
+            return mdFiles
             }
         } else {
-          return mdFiles 
-        } 
+          return mdFiles
+        }
   } else {
       return mdFiles
   }
@@ -84,11 +83,11 @@ const getMdFiles = (path) => {
 
 ///^(https:\/\/www\.|http:\/\/www\.|www\.)[a-zA-Z0-9\-_$]+\.[a-zA-Z]{2,5}$/g;
 //var regexText = /\[([\w\s\d\-+&#/\.[áéíóúÁÉÍÓÚü]+)\]/g;
+// var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
+// var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 
 var regexTextUrlGlobal = /\[(.+?)\]\((https?.+?)\)/g;
 var regexTextUrl = /\[(.*)\]\((.*)\)/;
-var regexUrl = /https?:\/\/(www\.)?[A-z\d]+(\.[A-z]+)*(\/[A-z\?=&-\d]*)*/g;
-var textAndUrl = /\[((.*))\]\(((http|https|ftp|ftps).+?)\)/g;
 
 //Function to read the .mdfiles and returning the links and the properties of the links
 const getLinksProperties = (path) => {
@@ -167,14 +166,14 @@ const fetchStatus = (path) => {
 //const linksDone = getLinksProperties(inputPath);
 
 module.exports = {
-  pathExists, 
+  pathExists,
   pathCheck,
   checkExt,
   checkDir,
   readDir,
   checkMarkdown,
   readFile,
-  joinPath, 
+  joinPath,
   getMdFiles,
   getLinksProperties,
   fetchStatus
