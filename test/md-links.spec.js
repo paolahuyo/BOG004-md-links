@@ -2,14 +2,6 @@ const mdLinks = require('../src/md-links');
 const cli = require("../src/cli.js");
 const methods = require("../src/methods.js");
 
-//--------To check in test camp-------//
-// describe('Checking the object of options, cli.inputOptions', () => {
-//   it('Check input options for --validate', () => {
-//     process.argv = 'node md-links ./md-files/no-md-files/errorfile.txt --validate'
-//     const valTrue = { validate: true, stats: false }
-//     expect(cli.inputOptions()).toBe(valTrue)
-//   });
-// });
 
 describe('Checking path, pathExists', () => {
   it('Is gonna validate if the path exists', () => {
@@ -149,6 +141,16 @@ describe('Evaluates fetchStatus', () => {
     return expect(methods.fetchStatus('/Users/paolahuyo/PROYECTOS-LABORATORIA/BOG004-md-links/md-files/series-errors.md')).resolves.toEqual(rejected);
   })
 });
+
+//--------To check in test camp-------//
+// describe('Checking the object of options, cli.inputOptions', () => {
+//   it('Check input options for --validate', () => {
+//     process.argv = 'node md-links ./md-files/no-md-files/errorfile.txt --validate'
+//     const valTrue = { validate: true, stats: false }
+//     expect(cli.inputOptions()).toBe(valTrue)
+//   });
+// });
+
 
 //--------To check in test camp-------//
 // describe('Evaluates mdLinks ', () => {
